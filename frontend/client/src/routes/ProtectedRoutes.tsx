@@ -2,8 +2,12 @@ import { Navigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 
-const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
-  const {  token, loading, checkAuth } = useAuth();
+interface ProtectedRouteProps {
+  children: React.ReactElement;
+}
+
+const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
+  const { token, loading, checkAuth } = useAuth();
   const [isVerifying, setIsVerifying] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const location = useLocation();
